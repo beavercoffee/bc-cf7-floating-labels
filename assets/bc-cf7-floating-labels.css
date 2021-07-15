@@ -34,7 +34,6 @@
     cursor: text; /* Match the input under the label */
     border: 1px solid transparent;
     border-radius: .25rem;
-    transition: all .1s ease-in-out;
 }
 
 .bc-floating-labels input::-webkit-input-placeholder,
@@ -103,5 +102,11 @@
     padding-top: .25rem;
     padding-bottom: .25rem;
     font-size: 12px;
+    color: var(--gray);
+}
+
+.bc-floating-labels input:focus ~ label,
+.bc-floating-labels select:focus ~ label,
+.bc-floating-labels textarea:focus ~ label {
     color: var(--gray);
 }

@@ -12,7 +12,7 @@ Plugin URI: https://github.com/beavercoffee/bc-cf7-floating-labels
 Requires at least: 5.7
 Requires PHP: 5.6
 Text Domain: bc-cf7-floating-labels
-Version: 1.7.14.4
+Version: 1.7.14.5
 */
 
 if(defined('ABSPATH')){
