@@ -20,8 +20,8 @@ if('undefined' === typeof(bc_cf7_floating_labels)){
 
         init: function(){
             jQuery(document).on('ready', function(){
-                if(jQuery('.ifwp-floating-labels > textarea').length){
-                    jQuery('.ifwp-floating-labels > textarea').each(function(){
+                if(jQuery('.bc-floating-labels > textarea').length){
+                    jQuery('.bc-floating-labels > textarea').each(function(){
                         jQuery(this).data({
                             'border': jQuery(this).outerHeight() - jQuery(this).innerHeight(),
                             'element': jQuery(this).height(),
@@ -30,13 +30,13 @@ if('undefined' === typeof(bc_cf7_floating_labels)){
                     });
                 }
                 bc_cf7_floating_labels.both();
-                if(jQuery('.ifwp-floating-labels > textarea').length){
-                    jQuery('.ifwp-floating-labels > textarea').on('input propertychange', function(){
+                if(jQuery('.bc-floating-labels > textarea').length){
+                    jQuery('.bc-floating-labels > textarea').on('input propertychange', function(){
                         bc_cf7_floating_labels.textarea(this);
                     });
                 }
-                if(jQuery('.ifwp-floating-labels > select').length){
-                    jQuery('.ifwp-floating-labels > select').on('change', function(){
+                if(jQuery('.bc-floating-labels > select').length){
+                    jQuery('.bc-floating-labels > select').on('change', function(){
                         bc_cf7_floating_labels.select(this);
                     });
                 }
