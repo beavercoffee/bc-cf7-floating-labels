@@ -19,31 +19,29 @@ if('undefined' === typeof(bc_cf7_floating_labels)){
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         init: function(){
-            jQuery(document).on({
-                'ready': function(){
-                    if(jQuery('.ifwp-floating-labels > textarea').length){
-                        jQuery('.ifwp-floating-labels > textarea').each(function(){
-                            jQuery(this).data({
-                                'border': jQuery(this).outerHeight() - jQuery(this).innerHeight(),
-                                'element': jQuery(this).height(),
-                                'padding': jQuery(this).innerHeight() - jQuery(this).height(),
-                            });
+            jQuery(document).on('ready', function(){
+                if(jQuery('.ifwp-floating-labels > textarea').length){
+                    jQuery('.ifwp-floating-labels > textarea').each(function(){
+                        jQuery(this).data({
+                            'border': jQuery(this).outerHeight() - jQuery(this).innerHeight(),
+                            'element': jQuery(this).height(),
+                            'padding': jQuery(this).innerHeight() - jQuery(this).height(),
                         });
-                    }
-                    bc_cf7_floating_labels.both();
-                    if(jQuery('.ifwp-floating-labels > textarea').length){
-                        jQuery('.ifwp-floating-labels > textarea').on('input propertychange', function(){
-                            bc_cf7_floating_labels.textarea(this);
-                        });
-                    }
-                    if(jQuery('.ifwp-floating-labels > select').length){
-                        jQuery('.ifwp-floating-labels > select').on('change', function(){
-                            bc_cf7_floating_labels.select(this);
-                        });
-                    }
-                },
-                bc_cf7_floating_labels.page_visibility_event(): bc_cf7_floating_labels.both,
+                    });
+                }
+                bc_cf7_floating_labels.both();
+                if(jQuery('.ifwp-floating-labels > textarea').length){
+                    jQuery('.ifwp-floating-labels > textarea').on('input propertychange', function(){
+                        bc_cf7_floating_labels.textarea(this);
+                    });
+                }
+                if(jQuery('.ifwp-floating-labels > select').length){
+                    jQuery('.ifwp-floating-labels > select').on('change', function(){
+                        bc_cf7_floating_labels.select(this);
+                    });
+                }
             });
+            jQuery(document).on(bc_cf7_floating_labels.page_visibility_event(), bc_cf7_floating_labels.both);
             jQuery('.wpcf7-form').on('wpcf7reset', bc_cf7_floating_labels.wpcf7reset);
         },
 
