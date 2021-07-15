@@ -49,7 +49,7 @@ if('undefined' === typeof(bc_cf7_floating_labels)){
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        page_visibility_event: {
+        page_visibility_event: function(){
             'use strict';
             var visibilityChange = '';
             if(typeof document.hidden !== 'undefined'){ // Opera 12.10 and Firefox 18 and later support
@@ -63,6 +63,23 @@ if('undefined' === typeof(bc_cf7_floating_labels)){
             }
             return visibilityChange;
         },
+
+    	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        /*page_visibility_state: function(){
+            'use strict';
+            var hidden = '';
+            if(typeof document.hidden !== 'undefined'){ // Opera 12.10 and Firefox 18 and later support
+                hidden = 'hidden';
+            } else if(typeof document.webkitHidden !== 'undefined'){
+                hidden = 'webkitHidden';
+            } else if(typeof document.msHidden !== 'undefined'){
+                hidden = 'msHidden';
+            } else if(typeof document.mozHidden !== 'undefined'){ // Deprecated
+                hidden = 'mozHidden';
+            }
+            return document[hidden];
+        },*/
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
