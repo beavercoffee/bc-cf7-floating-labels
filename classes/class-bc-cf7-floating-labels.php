@@ -47,7 +47,7 @@ if(!class_exists('BC_CF7_Floating_Labels')){
 
     	private function __construct($file = ''){
             $this->file = $file;
-            add_action('plugins_loaded', [$this, 'plugins_loaded']);
+            add_action('bc_cf7_fields_loaded', [$this, 'bc_cf7_fields_loaded']);
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,23 +126,15 @@ if(!class_exists('BC_CF7_Floating_Labels')){
     	//
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        public function plugins_loaded(){
-            if(!defined('BC_FUNCTIONS')){
-        		return;
-        	}
-            if(!defined('BC_CF7_FIELDS')){
-        		return;
-        	}
-            if(!defined('WPCF7_VERSION')){
-                return;
-            }
+        public function bc_cf7_fields_loaded(){
             add_action('wpcf7_enqueue_scripts', [$this, 'wpcf7_enqueue_scripts']);
             add_action('wpcf7_enqueue_styles', [$this, 'wpcf7_enqueue_styles']);
-            add_filter('bc_cf7_field', [$this, 'bc_cf7_field'], 20, 5);
+            add_filter('bc_cf7_field', [$this, 'bc_cf7_field'], 15, 5);
             if(!has_filter('wpcf7_autop_or_not', '__return_false')){
                 add_filter('wpcf7_autop_or_not', '__return_false');
             }
             bc_build_update_checker('https://github.com/beavercoffee/bc-cf7-floating-labels', $this->file, 'bc-cf7-floating-labels');
+            do_action('bc_cf7_floating_labels_loaded');
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
