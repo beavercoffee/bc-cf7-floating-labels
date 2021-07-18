@@ -72,51 +72,41 @@ if(!class_exists('BC_CF7_Floating_Labels')){
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    	private function select($html = '', $tag = null){
-            $placeholder = $this->placeholder($tag);
-            if($placeholder){
-                $html = bc_str_get_html($html);
-                $wrapper = $html->find('.wpcf7-form-control-wrap', 0);
-                $wrapper->addClass('bc-floating-labels');
-                $select = $wrapper->find('select', 0);
-                $select->addClass('custom-select');
-                $option = $select->find('option', 0);
-				$option->innertext = '';
-                $select->outertext = $select->outertext . '<label>' . $placeholder . '</label>';
-            }
+    	private function select($html = '', $placeholder = '', $tag = null){
+           	$html = bc_str_get_html($html);
+			$wrapper = $html->find('.wpcf7-form-control-wrap', 0);
+			$wrapper->addClass('bc-floating-labels');
+			$select = $wrapper->find('select', 0);
+			$select->addClass('custom-select');
+			$option = $select->find('option', 0);
+			$option->innertext = '';
+			$select->outertext = $select->outertext . '<label>' . $placeholder . '</label>';
             return $html;
         }
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    	private function text($html = '', $tag = null){
-            $placeholder = $this->placeholder($tag);
-            if($placeholder){
-                $html = bc_str_get_html($html);
-                $wrapper = $html->find('.wpcf7-form-control-wrap', 0);
-                $wrapper->addClass('bc-floating-labels');
-                $input = $wrapper->find('input', 0);
-                $input->addClass('form-control');
-                $input->outertext = $input->outertext . '<label>' . $placeholder . '</label>';
-
-            }
+    	private function text($html = '', $placeholder = '', $tag = null){
+            $html = bc_str_get_html($html);
+			$wrapper = $html->find('.wpcf7-form-control-wrap', 0);
+			$wrapper->addClass('bc-floating-labels');
+			$input = $wrapper->find('input', 0);
+			$input->addClass('form-control');
+			$input->outertext = $input->outertext . '<label>' . $placeholder . '</label>';
             return $html;
         }
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    	private function textarea($html = '', $tag = null){
-            $placeholder = $this->placeholder($tag);
-            if($placeholder){
-                $html = bc_str_get_html($html);
-                $wrapper = $html->find('.wpcf7-form-control-wrap', 0);
-                $wrapper->addClass('bc-floating-labels');
-                $textarea = $wrapper->find('textarea', 0);
-                $textarea->addClass('form-control');
-                $textarea->cols = null;
-				$textarea->rows = null;
-                $textarea->outertext = $textarea->outertext . '<label>' . $placeholder . '</label>';
-            }
+    	private function textarea($html = '', $placeholder = '', $tag = null){
+            $html = bc_str_get_html($html);
+			$wrapper = $html->find('.wpcf7-form-control-wrap', 0);
+			$wrapper->addClass('bc-floating-labels');
+			$textarea = $wrapper->find('textarea', 0);
+			$textarea->addClass('form-control');
+			$textarea->cols = null;
+			$textarea->rows = null;
+			$textarea->outertext = $textarea->outertext . '<label>' . $placeholder . '</label>';
             return $html;
         }
 
@@ -140,6 +130,10 @@ if(!class_exists('BC_CF7_Floating_Labels')){
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         public function bc_cf7_field($html, $tag, $type, $basetype, $original_html){
+			$placeholder = $this->placeholder($tag);
+            if('' === $placeholder){
+				return $html;
+			}
             switch($type){
                 case 'date':
                 case 'email':
@@ -148,13 +142,13 @@ if(!class_exists('BC_CF7_Floating_Labels')){
                 case 'tel':
                 case 'text':
                 case 'url':
-                    $html = $this->text($original_html, $tag);
+                    $html = $this->text($original_html, $placeholder, $tag);
                     break;
                 case 'select':
-                    $html = $this->select($original_html, $tag);
+                    $html = $this->select($original_html, $placeholder, $tag);
                     break;
                 case 'textarea':
-                    $html = $this->textarea($original_html, $tag);
+                    $html = $this->textarea($original_html, $placeholder, $tag);
                     break;
             }
             return $html;
