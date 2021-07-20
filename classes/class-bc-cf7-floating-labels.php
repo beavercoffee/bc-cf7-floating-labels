@@ -120,9 +120,6 @@ if(!class_exists('BC_CF7_Floating_Labels')){
             add_action('wpcf7_enqueue_scripts', [$this, 'wpcf7_enqueue_scripts']);
             add_action('wpcf7_enqueue_styles', [$this, 'wpcf7_enqueue_styles']);
             add_filter('bc_cf7_field', [$this, 'bc_cf7_field'], 15, 5);
-            if(!has_filter('wpcf7_autop_or_not', '__return_false')){
-                add_filter('wpcf7_autop_or_not', '__return_false');
-            }
             bc_build_update_checker('https://github.com/beavercoffee/bc-cf7-floating-labels', $this->file, 'bc-cf7-floating-labels');
             do_action('bc_cf7_floating_labels_loaded');
         }
